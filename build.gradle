@@ -12,8 +12,22 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    graphqlExtendScalarVersion = '19.1'
+}
+
 dependencies {
+    // graphql
     implementation 'org.springframework.boot:spring-boot-starter-graphql'
+    // graphql scalars extend
+    implementation "com.graphql-java:graphql-java-extended-scalars:${graphqlExtendScalarVersion}"
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // h2 db
+    runtimeOnly 'com.h2database:h2'
+    // spring web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework:spring-webflux'
     testImplementation 'org.springframework.graphql:spring-graphql-test'
