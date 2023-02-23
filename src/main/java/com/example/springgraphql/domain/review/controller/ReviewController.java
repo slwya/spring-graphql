@@ -1,7 +1,5 @@
-package com.example.springgraphql.domain.product.controller;
+package com.example.springgraphql.domain.review.controller;
 
-import com.example.springgraphql.domain.product.dto.ProductInput;
-import com.example.springgraphql.domain.product.entity.Product;
 import com.example.springgraphql.domain.review.dto.ReviewInput;
 import com.example.springgraphql.domain.review.entity.Review;
 import jakarta.validation.Valid;
@@ -11,7 +9,6 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
 
 
 /**
@@ -52,7 +49,7 @@ public class ReviewController {
      * @return
      */
     @MutationMapping
-    public boolean deleteProduct(@Argument @Valid @Min(value = 1, message = "code is min 1") Long code) {
+    public boolean deleteReview(@Argument @Valid @Min(value = 1, message = "code is min 1") Long code) {
         return false;
     }
 }

@@ -2,8 +2,11 @@ package com.example.springgraphql.domain.product.controller;
 
 import com.example.springgraphql.domain.product.dto.ProductInput;
 import com.example.springgraphql.domain.product.entity.Product;
+import com.example.springgraphql.domain.product.service.ProductService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -20,17 +23,21 @@ import java.util.ArrayList;
 
 @Controller
 public class ProductController {
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     /**
      * 상품 조회
      *
-     * @param code 상품 코드
+     * @param productCode 상품 코드
      * @return 상품
      */
     @QueryMapping
-    public Product productByCode(@Argument @Valid @Min(value = 1, message = "This cacheKey is not supported.") Long code) {
-        Product product = new Product();
-        return product;
+    public Product productByCode(@Argument @Valid @Positive(message = "1이상 입력") Long productCode) {
+        return productService.productByCode(productCode);
     }
 
     /**
@@ -40,9 +47,7 @@ public class ProductController {
      */
     @QueryMapping
     public ArrayList<Product> products() {
-        ArrayList<Product> products = new ArrayList<>();
-
-        return products;
+        return productService.products();
     }
 
     /**
@@ -53,7 +58,7 @@ public class ProductController {
      */
     @MutationMapping
     public boolean insertProduct(@Argument("input") @Valid ProductInput productInput) {
-        return false;
+        return productService.insertProduct(productInput);
     }
 
     /**
@@ -63,7 +68,7 @@ public class ProductController {
      * @return 저장 결과
      */
     @MutationMapping
-    public boolean deleteProduct(@Argument @Valid @Min(value = 1, message = "code is min 1") Long productCode) {
-        return false;
+    public boolean deleteProduct(@Argument @Valid @Min(value = 1, message = "1이상 입력") Long productCode) {
+        return productService.deleteProduct(productCode);
     }
 }

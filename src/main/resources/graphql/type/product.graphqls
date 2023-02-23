@@ -1,11 +1,11 @@
 type Product {
-    code : Long
-    name : String
+    productCode : Long
+    productName : String
     price : Long
 }
 
 input ProductInput {
-    code : Long
-    name : String
+    productCode : Long
+    productName : String
     price : Long
 }
