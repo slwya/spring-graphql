@@ -14,6 +14,7 @@ repositories {
 
 ext {
     graphqlExtendScalarVersion = '19.1'
+    resilience4jVersion = '2.0.2'
 }
 
 dependencies {
@@ -29,6 +30,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     // validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // resilience4j
+    implementation "io.github.resilience4j:resilience4j-spring-boot2:${resilience4jVersion}"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework:spring-webflux'

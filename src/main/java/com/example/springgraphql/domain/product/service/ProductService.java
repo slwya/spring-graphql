@@ -15,14 +15,19 @@ import java.util.ArrayList;
 @Service
 public class ProductService {
 
+    private final ProductCircuitBreakerService productCircuitBreakerService;
+
+    public ProductService(ProductCircuitBreakerService productCircuitBreakerService) {
+        this.productCircuitBreakerService = productCircuitBreakerService;
+    }
+
     /**
      * 상품 조회
      * @param productCode 상품코드
      * @return 상품 데이터
      */
     public Product productByCode(Long productCode) {
-        Product product = new Product(1L, "1", 1);
-        return product;
+        return productCircuitBreakerService.productByCode(productCode);
     }
 
     /**
