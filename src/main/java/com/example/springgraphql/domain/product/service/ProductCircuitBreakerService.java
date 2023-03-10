@@ -17,7 +17,7 @@ public class ProductCircuitBreakerService {
      */
     @CircuitBreaker(name = "circuitBreaker", fallbackMethod = "productFallback")
     public Product productByCode(Long productCode) {
-        Product product = new Product(1L, "1", 1);
+        Product product = new Product();
         return product;
     }
 
@@ -28,7 +28,7 @@ public class ProductCircuitBreakerService {
      */
     public Product productFallback(Long productCode, Throwable throwable) {
         logger.info("[getCacheFallback] - cacheKey: {}, throwable message: {}", productCode, throwable.getMessage());
-        Product product = new Product(2L, "2", 2);
+        Product product = new Product();
         return product;
     }
 }
