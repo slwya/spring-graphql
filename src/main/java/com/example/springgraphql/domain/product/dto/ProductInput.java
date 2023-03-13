@@ -3,6 +3,11 @@ package com.example.springgraphql.domain.product.dto;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 
+/**
+ * <pre>
+ * 상품 input
+ * </pre>
+ */
 public record ProductInput(
         // 상품 코드
         @Positive(message = "1이상 입력")

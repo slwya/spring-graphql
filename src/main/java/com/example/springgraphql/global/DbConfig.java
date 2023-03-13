@@ -48,7 +48,7 @@ public class DbConfig {
     private String physicalStrategy;
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
+    @ConfigurationProperties(prefix = "spring.datasource.hikari")
     DataSource dataSource() {
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }

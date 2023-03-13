@@ -8,17 +8,17 @@ type Query {
     products : [Product]
 
     # 상품평 조회
-    reviewByProductCode(code: Long) : Review
+    reviewByProductCode(reviewCode: Long) : Review
 }
 
 type Mutation {
     # 상품 입력
     insertProduct(input : ProductInput) : Boolean
     # 상품 삭제
-    deleteProduct(code: Long!) : Boolean
+    deleteProduct(productCode: Long!) : Boolean
 
     # 상품평 입력
     insertReview(input : ReviewInput) : Boolean
     # 상품평 삭제
-    deleteReview(code: Long!) : Boolean
+    deleteReview(reviewCode: Long!) : Boolean
 }

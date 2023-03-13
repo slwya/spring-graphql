@@ -2,9 +2,10 @@ package com.example.springgraphql.domain.product.service;
 
 import com.example.springgraphql.domain.product.dto.ProductInput;
 import com.example.springgraphql.domain.product.entity.Product;
+import com.example.springgraphql.domain.product.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <pre>
@@ -17,8 +18,11 @@ public class ProductService {
 
     private final ProductCircuitBreakerService productCircuitBreakerService;
 
-    public ProductService(ProductCircuitBreakerService productCircuitBreakerService) {
+    private final ProductRepository productRepository;
+
+    public ProductService(ProductCircuitBreakerService productCircuitBreakerService, ProductRepository productRepository) {
         this.productCircuitBreakerService = productCircuitBreakerService;
+        this.productRepository = productRepository;
     }
 
     /**
@@ -34,9 +38,8 @@ public class ProductService {
      * 상품리스트 조회
      * @return 상품 리스트 데이터
      */
-    public ArrayList<Product> products() {
-        ArrayList<Product> productList = new ArrayList<>();
-        return productList;
+    public List<Product> products() {
+        return productCircuitBreakerService.productList();
     }
 
     /**
@@ -45,6 +48,7 @@ public class ProductService {
      * @return 입력 결과
      */
     public Boolean insertProduct(ProductInput productInput) {
+        productRepository.save(new Product(productInput));
         return true;
     }
 
@@ -54,6 +58,7 @@ public class ProductService {
      * @return 삭제 결과
      */
     public Boolean deleteProduct(Long productCode) {
+        productRepository.deleteById(productCode);
         return true;
     }
 }

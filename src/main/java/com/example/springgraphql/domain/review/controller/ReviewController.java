@@ -2,6 +2,7 @@ package com.example.springgraphql.domain.review.controller;
 
 import com.example.springgraphql.domain.review.dto.ReviewInput;
 import com.example.springgraphql.domain.review.entity.Review;
+import com.example.springgraphql.domain.review.service.ReviewService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -19,6 +20,11 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class ReviewController {
+    private final ReviewService reviewService;
+
+    public ReviewController(ReviewService reviewService) {
+        this.reviewService = reviewService;
+    }
 
     /**
      * 리뷰 조회
@@ -28,8 +34,7 @@ public class ReviewController {
      */
     @QueryMapping
     public Review reviewByProductCode(@Argument @Valid @Min(value = 1, message = "code is min 1") Long productCode) {
-        Review review = new Review();
-        return review;
+        return reviewService.reviewByProductCode(productCode);
     }
 
     /**
@@ -40,16 +45,16 @@ public class ReviewController {
      */
     @MutationMapping
     public boolean insertReview(@Argument("input") @Valid ReviewInput reviewInput) {
-        return false;
+        return reviewService.insertReview(reviewInput);
     }
 
     /**
      * 리뷰 삭제
-     * @param code
-     * @return
+     * @param productCode 상품 코드
+     * @return 삭제 결과
      */
     @MutationMapping
-    public boolean deleteReview(@Argument @Valid @Min(value = 1, message = "code is min 1") Long code) {
-        return false;
+    public boolean deleteReview(@Argument @Valid @Min(value = 1, message = "code is min 1") Long productCode) {
+        return reviewService.deleteReview(productCode);
     }
 }

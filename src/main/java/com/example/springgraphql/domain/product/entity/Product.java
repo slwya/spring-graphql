@@ -1,5 +1,6 @@
 package com.example.springgraphql.domain.product.entity;
 
+import com.example.springgraphql.domain.product.dto.ProductInput;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,4 +25,14 @@ public class Product {
 
     // 상품 가격
     private int price;
+
+    public Product(ProductInput productInput) {
+        this.productCode = productInput.productCode();
+        this.productName = productInput.productName();
+        this.price = productInput.price();
+    }
+
+    public Product() {
+
+    }
 }

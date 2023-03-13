@@ -5,14 +5,13 @@ import com.example.springgraphql.domain.product.entity.Product;
 import com.example.springgraphql.domain.product.service.ProductService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -46,7 +45,7 @@ public class ProductController {
      * @return 상품 리스트
      */
     @QueryMapping
-    public ArrayList<Product> products() {
+    public List<Product> products() {
         return productService.products();
     }
 

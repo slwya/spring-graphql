@@ -17,8 +17,6 @@ import java.util.stream.Collectors;
  * <pre>
  * GraphQL Exception 핸들러
  * </pre>
- *
- * @since 2022. 9. 20.
  */
 @Component
 public class GraphQlExceptionHandler implements DataFetcherExceptionResolver {

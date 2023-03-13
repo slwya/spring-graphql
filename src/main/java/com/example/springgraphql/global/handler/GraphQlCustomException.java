@@ -14,8 +14,6 @@ import java.util.Map;
  * GraphQL Custom Exception Abstract Class
  * GraphQL 관련 사용자 예외는 해당 Class를 상속받아 구현한다.
  * </pre>
- *
- * @since 2022. 9. 20.
  */
 public abstract class GraphQlCustomException extends RuntimeException implements GraphQLError {
     private HttpStatus status;
